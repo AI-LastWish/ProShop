@@ -1,6 +1,7 @@
 import React from 'react'
 import { LinkContainer } from 'react-router-bootstrap'
 import { Navbar, Nav, Container } from 'react-bootstrap'
+import styles from './Header.module.css'
 
 const Header = () => {
   return (
@@ -13,7 +14,7 @@ const Header = () => {
           <Navbar.Toggle aria-controls="navbarScroll" />
           <Navbar.Collapse id="navbarScroll">
             <Nav
-              className="ms-auto my-2 my-lg-0"
+              className={`ms-auto my-2 my-lg-0 ${styles.test}`}
               style={{ maxHeight: '100px' }}
               navbarScroll
             >

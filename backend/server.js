@@ -1,8 +1,13 @@
 import express from 'express'
 import { config } from 'dotenv'
-import products from './mock-data/products.js'
+import colors from 'colors'
+import connectDB from './config/db.js'
+import { notFound, errorHandler } from './middleware/errorMiddleware.js'
+import productRoutes from './routes/productRoute.js'
 
 config()
+
+connectDB()
 
 const app = express()
 
@@ -10,16 +15,12 @@ app.get('/', (req, res) => {
   res.send('API is running...')
 })
 
-app.get('/api/products', (req, res) => {
-  res.json(products)
-})
+app.use('/api/products', productRoutes)
 
-app.get('/api/products/:id', (req, res) => {
-  const product = products.find(p => p._id === req.params.id)
-  res.json(product)
-})
+app.use(notFound)
+app.use(errorHandler)
 
 const PORT = process.env.PORT || 5000
 const NODE_ENV = process.env.NODE_ENV || 'development'
 
-app.listen(PORT, console.log(`Server running in ${NODE_ENV} mode on port ${PORT}`))
+app.listen(PORT, console.log(`Server running in ${NODE_ENV} mode on port ${PORT}`.yellow.bold))
