@@ -1,0 +1,11 @@
+.spinner-size {
+  width: 100px;
+  height: 100px;
+  margin: auto;
+  display: block;
+  position: absolute;  
+  top: 50%;
+  left: 50%;
+  margin-left: -50px;
+  margin-top: -50px;
+}
