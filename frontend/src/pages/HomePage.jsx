@@ -15,12 +15,7 @@ const HomePage = () => {
   // useEffect chạy sau tất cả những lần render? Đúng! Theo mặc định, nó chạy sau lần render đầu tiên và mỗi lần update. 
   useEffect(() => {
     dispatch(listProducts())
-  }, [dispatch])
-
-  if (error) {
-    console.log('error')
-    console.log(error, loading)
-  }
+  }, [dispatch])  
 
   return (
     <>
