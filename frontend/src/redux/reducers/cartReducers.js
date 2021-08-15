@@ -6,9 +6,7 @@ export const cartReducer = (state = { cartItems: [] }, action) => {
       const item = action.payload
 
       const existItem = state.cartItems.find(x => x.product === item.product)
-
-      console.log('state')
-      console.log(state)
+      
       if (existItem) {
         return {
           ...state,
