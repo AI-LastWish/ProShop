@@ -10,7 +10,8 @@ const CartPage = ({ match, location, history }) => {
   const qty = location.search ? +location.search.split('?qty=')[1] : 1
   const dispatch = useDispatch()
 
-  const { cartItems } = useSelector(state => state.cart)
+  const cart = useSelector(state => state.cart)
+  const { cartItems } = cart
 
   useEffect(() => {
     if (productId) {

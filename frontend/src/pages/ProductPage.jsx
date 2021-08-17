@@ -12,8 +12,8 @@ const ProductPage = ({ history, match }) => {
 
   const dispatch = useDispatch()
 
-  const { loading, error, product } = useSelector(state => state.productDetails)
-
+  const productDetails = useSelector(state => state.productDetails)
+  const { loading, error, product } = productDetails
   useEffect(() => {
     dispatch(listProductDetails(match.params.id))
   }, [dispatch, match])
