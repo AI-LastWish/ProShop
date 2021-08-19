@@ -16,9 +16,7 @@ const CartPage = ({ match, location, history }) => {
   useEffect(() => {
     if (productId) {
       dispatch(addToCart(productId, qty))
-    } else {      
-      dispatch(updateCart(productId, qty))
-    }
+    }     
   }, [dispatch, productId, qty])
 
   const removeFromCartHandler = (id) => {
