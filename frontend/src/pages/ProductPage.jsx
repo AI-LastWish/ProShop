@@ -5,6 +5,7 @@ import { Row, Col, Image, ListGroup, Card, Button, Form } from 'react-bootstrap'
 import Message from '../components/spinner/Message'
 import Loader from '../components/spinner/Loader'
 import Rating from '../components/Rating'
+import Meta from '../components/Meta'
 import { listProductDetails, createProductReview } from '../redux/actions/productActions.js'
 import { PRODUCT_CREATE_REVIEW_RESET } from '../constants/productConstants'
 
@@ -54,6 +55,7 @@ const ProductPage = ({ history, match }) => {
       <Link className='btn btn-light my-3' to='/'>Go Back</Link>
       {loading ? <Loader /> : error ? <Message variant='danger'>{error}</Message> : (
         <>
+          <Meta title={product.name} />
           <Row>
             <Col md={6}>
               {/* fluid: keep image inside container */}
