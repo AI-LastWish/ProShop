@@ -4,32 +4,43 @@ import { Row, Col } from 'react-bootstrap'
 import Product from '../components/Product'
 import Message from '../components/spinner/Message'
 import Loader from '../components/spinner/Loader'
+import Paginate from '../components/Paginate'
 import { listProducts } from '../redux/actions/productActions.js'
 
 const HomePage = ({ match }) => {
   const keyword = match.params.keyword
+  const pageNumber = match.params.pageNumber || 1
 
   const dispatch = useDispatch()
 
   const productList = useSelector(state => state.productList)
-  const { loading, error, products } = productList
+  const { loading, error, products, page, pages } = productList
 
   // useEffect chạy sau tất cả những lần render? Đúng! Theo mặc định, nó chạy sau lần render đầu tiên và mỗi lần update. 
   useEffect(() => {
-    dispatch(listProducts(keyword))
-  }, [dispatch, keyword])
+    dispatch(listProducts(keyword, pageNumber))
+  }, [dispatch, keyword, pageNumber])
 
   return (
     <>
       <h1>Lastest Products</h1>
       {loading ? <Loader /> : error ? <Message variant='danger'>{error}</Message> :
-        <Row>
-          {products.map(product => (
-            <Col key={product._id} sm={12} md={6} lg={4} xl={3}>
-              <Product product={product} />
-            </Col>
-          ))}
-        </Row>
+        (
+          <>
+            <Row>
+              {products.map((product) => (
+                <Col key={product._id} sm={12} md={6} lg={4} xl={3}>
+                  <Product product={product} />
+                </Col>
+              ))}
+            </Row>
+            <Paginate
+              pages={pages}
+              page={page}
+              keyword={keyword ? keyword : ''}
+            />
+          </>
+        )
       }
 
     </>
