@@ -5,6 +5,7 @@ import Product from '../components/Product'
 import Message from '../components/spinner/Message'
 import Loader from '../components/spinner/Loader'
 import Paginate from '../components/Paginate'
+import ProductCarousel from '../components/ProductCarousel'
 import { listProducts } from '../redux/actions/productActions.js'
 
 const HomePage = ({ match }) => {
@@ -23,6 +24,7 @@ const HomePage = ({ match }) => {
 
   return (
     <>
+      {!keyword && <ProductCarousel />}
       <h1>Lastest Products</h1>
       {loading ? <Loader /> : error ? <Message variant='danger'>{error}</Message> :
         (
