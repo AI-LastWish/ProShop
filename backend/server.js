@@ -2,6 +2,7 @@ import express from 'express'
 import path from 'path'
 import { config } from 'dotenv'
 import colors from 'colors'
+import morgan from 'morgan'
 import connectDB from './config/db.js'
 import { notFound, errorHandler } from './middleware/errorMiddleware.js'
 import productRoutes from './routes/productRoute.js'
@@ -14,6 +15,10 @@ config()
 connectDB()
 
 const app = express()
+
+if (process.env.NODE_ENV === 'development') {
+  app.use(morgan('dev'))
+}
 
 // Add thid middleware in order to request.body actually parsed
 app.use(express.json())

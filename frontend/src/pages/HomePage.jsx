@@ -6,7 +6,9 @@ import Message from '../components/spinner/Message'
 import Loader from '../components/spinner/Loader'
 import { listProducts } from '../redux/actions/productActions.js'
 
-const HomePage = () => {
+const HomePage = ({ match }) => {
+  const keyword = match.params.keyword
+
   const dispatch = useDispatch()
 
   const productList = useSelector(state => state.productList)
@@ -14,8 +16,8 @@ const HomePage = () => {
 
   // useEffect chạy sau tất cả những lần render? Đúng! Theo mặc định, nó chạy sau lần render đầu tiên và mỗi lần update. 
   useEffect(() => {
-    dispatch(listProducts())
-  }, [dispatch])  
+    dispatch(listProducts(keyword))
+  }, [dispatch, keyword])
 
   return (
     <>

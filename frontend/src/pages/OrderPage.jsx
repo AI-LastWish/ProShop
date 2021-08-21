@@ -35,7 +35,7 @@ const OrderPage = ({ match, history }) => {
     if (!userInfo) {
       history.push('/login')
     }
-    
+
     const addPayPalScript = async () => {
       const { data: clientId } = await axios.get('/api/config/paypal')
       const script = document.createElement('script')
@@ -59,9 +59,9 @@ const OrderPage = ({ match, history }) => {
         setSdkReady(true)
       }
     }
-  }, [dispatch, order, successPay, successDeliver, orderId])
+  }, [dispatch, history, userInfo, order, successPay, successDeliver, orderId])
 
-  const successPaymentHandler = (paymentResult) => {    
+  const successPaymentHandler = (paymentResult) => {
     dispatch(payOrder(orderId, paymentResult))
   }
 

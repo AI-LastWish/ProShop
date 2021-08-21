@@ -1,8 +1,10 @@
 import React from 'react'
+import { Route } from 'react-router-dom'
 import { useDispatch, useSelector } from 'react-redux'
 import { useHistory } from 'react-router-dom';
 import { LinkContainer } from 'react-router-bootstrap'
 import { Navbar, Nav, Container, NavDropdown } from 'react-bootstrap'
+import SearchBox from '../SearchBox';
 import { logout } from '../../redux/actions/userActions'
 
 const Header = () => {
@@ -26,6 +28,7 @@ const Header = () => {
           </LinkContainer>
           <Navbar.Toggle aria-controls="navbarScroll" />
           <Navbar.Collapse id="navbarScroll">
+            <Route render={({ history }) => <SearchBox history={history} />} />
             <Nav
               className={'ms-auto my-2 my-lg-0'}
               style={{ maxHeight: '100px' }}
